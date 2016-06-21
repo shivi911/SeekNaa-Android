@@ -1,10 +1,9 @@
-package com.example.shivi.com.example.shivi.adapters;
+package com.example.shivi.listviewhttpcall.adapters;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.shivi.com.example.shivi.models.News;
-import com.example.shivi.com.example.shivi.network.ImageLoader;
+import com.example.shivi.listviewhttpcall.models.News;
+import com.example.shivi.listviewhttpcall.network.ImageLoader;
 import com.example.shivi.listviewhttpcall.R;
 
 import java.io.InputStream;
@@ -67,7 +66,6 @@ public class NewsListAdapter extends ArrayAdapter<News> {
             // we've just avoided calling findViewById() on resource everytime
             // just use the viewHolder
             viewHolder = (ViewHolderItem) convertView.getTag();
-            Log.d("SET", "NULL");
             viewHolder.imageViewItem.setImageBitmap(null); // to prevent flicker of images when list view is scrolled
         }
 

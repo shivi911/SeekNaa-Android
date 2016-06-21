@@ -2,6 +2,7 @@ package com.example.shivi.listviewhttpcall;
 
 import android.app.ListFragment;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,6 +20,8 @@ import com.example.shivi.com.example.shivi.adapters.NewsListAdapter;
 import com.example.shivi.com.example.shivi.models.News;
 import com.example.shivi.com.example.shivi.network.NewsFetcher;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +36,7 @@ public class NewsListFragment extends ListFragment {
     ListView newsListView;
     private List<News> newsList = new ArrayList<>();
     String nyTimesURL = "http://api.nytimes.com/svc/mostpopular/v2/mostemailed/all-sections/1.json?api-key=fa5723452d7d2454cf24a2a3d920012c:10:66680873";
+    int count = 20; // how many news items to fetch
     EndlessScrollListener scrollListener;
 
     // TODO: Customize parameter argument names
@@ -91,17 +95,19 @@ public class NewsListFragment extends ListFragment {
         newsListAdapter = new NewsListAdapter(getActivity(), newsList);
         newsListView.setAdapter(newsListAdapter);
 
-        Log.d("FRAG", "CALLING NEWSFETCH");
-        new NewsFetcher(newsList, newsListAdapter).execute(new Integer(0));
+        Log.d("FRAG", "CALLING NEWSFETCH00");
+        // new NewsFetcher(newsList, newsListAdapter).execute(new Integer(0));
+        new NewsFetcherTask().execute(new Integer(0));
 
         scrollListener = new EndlessScrollListener() {
             @Override
             public boolean onLoadMore(int page, int totalItemsCount) {
-                Log.d("ON SCROLL ", "PAGE " + page + " COUNT " + totalItemsCount);
+                Log.d("ON SCROLL00 ", "PAGE " + page + " COUNT " + totalItemsCount);
                 // Triggered only when new data needs to be appended to the list
                 // Add whatever code is needed to append new items to your AdapterView
                 // new NewsFetcherTask().execute(new Integer(page*20));
-                new NewsFetcher(newsList, newsListAdapter).execute(new Integer(page*20));
+                // new NewsFetcher(newsList, newsListAdapter).execute(new Integer(page*20));
+                new NewsFetcherTask().execute(new Integer(page*20));
                 return true;
             }
         };
@@ -113,8 +119,8 @@ public class NewsListFragment extends ListFragment {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
                 News news = (News) parent.getItemAtPosition(position);
-                mListener.onNewsItemSelected(id); // pass selection to NewsActivity
-                Log.d("ITEM IS ", "URL " + news.newsUrl);
+                mListener.onNewsItemSelected(news.newsUrl); // pass selection to NewsActivity
+                // Log.d("ITEM IS ", "URL " + news.newsUrl);
             }
         });
 
@@ -178,6 +184,35 @@ public class NewsListFragment extends ListFragment {
      */
     public interface OnListFragmentInteractionListener {
         // called when a user selects a news item
-        public void onNewsItemSelected(long rowID);
+        public void onNewsItemSelected(String newsUrl);
+    }
+
+    private class NewsFetcherTask extends AsyncTask<Integer, Void, JSONObject> {
+        @Override
+        protected JSONObject doInBackground(Integer... params) {
+            StringBuffer nyURL0 = new StringBuffer(nyTimesURL);
+            nyURL0.append("&offset=" + params[0]);
+            if (params[0] > 0) count = params[0];
+
+
+            try {
+                String result = new NewsFetcher().getUrlData(nyURL0.toString());
+                return new JSONObject(result);
+            }
+            catch(Exception ex) {
+                Log.e("NewsListFragment", ex.getMessage());
+                return null;
+            }
+
+
+        }
+
+        protected void onPostExecute(JSONObject news) {
+            News.makeNewsList(news, newsList);
+
+
+            Log.d("POST EXECT", "POST " + newsList.size());
+            newsListAdapter.notifyDataSetChanged();
+        }
     }
 }

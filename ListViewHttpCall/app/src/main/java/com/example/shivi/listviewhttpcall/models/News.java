@@ -1,4 +1,4 @@
-package com.example.shivi.com.example.shivi.models;
+package com.example.shivi.listviewhttpcall.models;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

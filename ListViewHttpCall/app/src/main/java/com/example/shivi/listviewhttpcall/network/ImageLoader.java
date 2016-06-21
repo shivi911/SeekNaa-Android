@@ -1,4 +1,4 @@
-package com.example.shivi.com.example.shivi.network;
+package com.example.shivi.listviewhttpcall.network;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
