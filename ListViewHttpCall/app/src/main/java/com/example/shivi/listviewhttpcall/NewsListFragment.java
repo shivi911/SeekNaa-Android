@@ -15,10 +15,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 
-import com.example.shivi.EndlessScrollListener;
-import com.example.shivi.com.example.shivi.adapters.NewsListAdapter;
-import com.example.shivi.com.example.shivi.models.News;
-import com.example.shivi.com.example.shivi.network.NewsFetcher;
+import com.example.shivi.listviewhttpcall.adapters.NewsListAdapter;
+import com.example.shivi.listviewhttpcall.models.News;
+import com.example.shivi.listviewhttpcall.network.NewsFetcher;
 
 import org.json.JSONObject;
 

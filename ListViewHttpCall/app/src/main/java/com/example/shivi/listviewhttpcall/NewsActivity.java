@@ -2,12 +2,13 @@ package com.example.shivi.listviewhttpcall;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 // the NewsActivity is the MainActivity; the main difference is that it uses fragments
-public class NewsActivity extends AppCompatActivity implements NewsListFragment.OnListFragmentInteractionListener {
+public class NewsActivity extends AppCompatActivity implements NewsListFragment.OnListFragmentInteractionListener, NewsDetailFragment.OnFragmentInteractionListener {
 
     NewsListFragment newsListFragment; // displayes list of news
 
@@ -56,7 +57,27 @@ public class NewsActivity extends AppCompatActivity implements NewsListFragment.
     }
 
     @Override
-    public void onNewsItemSelected(long rowID) {
-        Log.d("NEWSACT", "SELECTED " + rowID);
+    public void onNewsItemSelected(String newsUrl) {
+        // launch the fragment to show the news as a webview
+        Log.d("NEWSACT", "NEWS URL IS " + newsUrl);
+
+        NewsDetailFragment newsDetailFragment = new NewsDetailFragment();
+        Bundle arguments = new Bundle();
+        arguments.putString("NEWS_URL", newsUrl);
+        newsDetailFragment.setArguments(arguments);
+
+        // use a FragmentTransaction to display the NewsDetailsFragment
+        FragmentTransaction transaction =
+                getFragmentManager().beginTransaction();
+        int viewID = R.id.fragment_container;
+        transaction.replace(viewID, newsDetailFragment);
+        transaction.addToBackStack(null);
+        transaction.commit(); // causes NewsDetailsFragment to display
+
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
