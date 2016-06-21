@@ -5,10 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ListView;
 
-import com.example.shivi.EndlessScrollListener;
-import com.example.shivi.com.example.shivi.adapters.NewsListAdapter;
-import com.example.shivi.com.example.shivi.models.News;
-import com.example.shivi.com.example.shivi.network.NewsFetcher;
+import com.example.shivi.listviewhttpcall.adapters.NewsListAdapter;
+import com.example.shivi.listviewhttpcall.models.News;
+import com.example.shivi.listviewhttpcall.network.NewsFetcher;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity  {
                 // Triggered only when new data needs to be appended to the list
                 // Add whatever code is needed to append new items to your AdapterView
                 // new NewsFetcherTask().execute(new Integer(page*20));
-                new NewsFetcher(newsList, newsListAdapter).execute(new Integer(page*20));
+                // new NewsFetcher(newsList, newsListAdapter).execute(new Integer(page*20));
                 return true;
             }
         };
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity  {
 
 
         int offset = 0;
-        newsFetcher.execute(new Integer(offset));
+       //  newsFetcher.execute(new Integer(offset));
 
     }
 
