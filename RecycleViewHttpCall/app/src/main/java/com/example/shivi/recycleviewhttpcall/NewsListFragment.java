@@ -33,6 +33,16 @@ public class NewsListFragment extends Fragment  {
     RecyclerView newsRecyclerView;
     ListView newsListView;
     private List<News> newsList = new ArrayList<>();
+    // http://api.nytimes.com/svc/topstories/v2/home.json?api-key=fa5723452d7d2454cf24a2a3d920012c:10:66680873&offset=0
+    // https://developer.nytimes.com/top_stories_v2.json#/Console/GET/%7Bsection%7D.%7Bformat%7D
+    // http://api.nytimes.com/svc/topstories/v2/world.json?api-key=fa5723452d7d2454cf24a2a3d920012c:10:66680873&offset=0
+    // http://api.nytimes.com/svc/topstories/v2/business.json?api-key=fa5723452d7d2454cf24a2a3d920012c:10:66680873
+    // http://api.nytimes.com/svc/topstories/v2/technology.json?api-key=fa5723452d7d2454cf24a2a3d920012c:10:66680873
+    // http://api.nytimes.com/svc/topstories/v2/health.json?api-key=fa5723452d7d2454cf24a2a3d920012c:10:66680873
+    // http://api.nytimes.com/svc/topstories/v2/sports.json?api-key=fa5723452d7d2454cf24a2a3d920012c:10:66680873
+    // http://api.nytimes.com/svc/topstories/v2/movies.json?api-key=fa5723452d7d2454cf24a2a3d920012c:10:66680873
+    // http://api.nytimes.com/svc/topstories/v2/books.json?api-key=fa5723452d7d2454cf24a2a3d920012c:10:66680873
+
     String nyTimesURL = "http://api.nytimes.com/svc/mostpopular/v2/mostemailed/all-sections/1.json?api-key=fa5723452d7d2454cf24a2a3d920012c:10:66680873";
     int count = 20; // how many news items to fetch
     // EndlessScrollListener2 scrollListener;
