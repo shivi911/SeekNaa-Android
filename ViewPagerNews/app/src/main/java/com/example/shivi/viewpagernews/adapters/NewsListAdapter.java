@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +29,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsHo
     // private final Activity context;
     private final List<News> news;
     private Map<String, Bitmap> bitmaps = new HashMap<>();
-    private Integer defaultThumbNail = R.mipmap.ic_launcher;
+    private Integer defaultThumbNail = R.mipmap.navi_news;
     private OnItemClickListener mListener;
 
     public NewsListAdapter(List<News> news, OnItemClickListener listener) {
@@ -47,9 +46,9 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsHo
     }
 
     public class NewsHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView textViewItem;
+        TextView textViewItem; // title
         ImageView imageViewItem;
-        TextView extratxtItem;
+        TextView extratxtItem; // author
 
         News mNewsItem;
 
@@ -58,9 +57,9 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsHo
             v.setOnClickListener(this);
 
 
-            textViewItem = (TextView) v.findViewById(R.id.item);
+            textViewItem = (TextView) v.findViewById(R.id.title);
             imageViewItem = (ImageView) v.findViewById(R.id.newsThumbNail);
-            extratxtItem = (TextView) v.findViewById(R.id.textView1);
+            extratxtItem = (TextView) v.findViewById(R.id.author);
         }
 
         public void bindNewsItem(News newsItem) {
@@ -70,7 +69,6 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsHo
             extratxtItem.setText(newsItem.byline);
 
             if (newsItem.imageUrl != null) {
-                // Log.d("NLADAP", "PICASSO");
                 Picasso.with(itemView.getContext()).load(newsItem.imageUrl).into(imageViewItem);
                 /*
                 if (bitmaps.containsKey(newsItem.imageUrl)) {
@@ -89,7 +87,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsHo
 
         @Override
         public void onClick(View v) {
-            Log.d("NLADAPT", "ONCLICK"); mListener.onItemClick(mNewsItem);
+            mListener.onItemClick(mNewsItem);
         }
     }
 
@@ -109,7 +107,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsHo
                                                          int viewType) {
 
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.newsitem, parent, false);
+        View view = layoutInflater.inflate(R.layout.newsitem_card, parent, false);
 
         return new NewsHolder(view);
     }

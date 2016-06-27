@@ -170,11 +170,21 @@ public class NewsListFragment extends Fragment {
 
         Context context = view.getContext();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        if (categoryId.equals("6")) {
+            Log.d("FRAG", "GRID");
+            newsRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+
+        }
+        else {
+            newsRecyclerView.setLayoutManager(linearLayoutManager);
+        }
+        /*
         if (mColumnCount <= 1) {
             newsRecyclerView.setLayoutManager(linearLayoutManager);
         } else {
             newsRecyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
         }
+        */
 
         // newsRecyclerView.addOnScrollListener(scrollListener);
 

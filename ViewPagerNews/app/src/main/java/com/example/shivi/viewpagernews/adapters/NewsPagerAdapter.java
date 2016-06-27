@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.util.Log;
 
 import com.example.shivi.viewpagernews.NewsListFragment;
 
@@ -21,7 +20,6 @@ public class NewsPagerAdapter  extends FragmentPagerAdapter {
         Bundle bundle = new Bundle();
         NewsListFragment frag = new NewsListFragment();;
         String catId = new Integer(i).toString();
-        Log.d("NPADAPT ", "CAT ID00 " + catId);
         bundle.putString("CategoryId", catId);
         frag.setArguments(bundle);
         return frag;

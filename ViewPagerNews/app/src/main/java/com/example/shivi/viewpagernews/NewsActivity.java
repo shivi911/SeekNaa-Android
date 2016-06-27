@@ -50,7 +50,11 @@ public class NewsActivity extends AppCompatActivity implements NewsListFragment.
             fragmentTransaction.commit(); // causes ContactListFragment to display
         }
         */
-        getSupportActionBar().setTitle("Navi Times");
+        getSupportActionBar().setTitle("Navi Samachar");
+
+
+        // getSupportActionBar().setIcon(R.drawable.navi_news);
+        // getSupportActionBar().setLogo(R.mipmap.navi_news);
     }
 
     @Override
