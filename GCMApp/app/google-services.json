@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "396467968173",
+    "firebase_url": "https://shivgcmtest-fd785.firebaseio.com",
+    "project_id": "shivgcmtest-fd785",
+    "storage_bucket": "shivgcmtest-fd785.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:396467968173:android:b7928f737e497938",
+        "android_client_info": {
+          "package_name": "com.navispin.gcmapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "396467968173-139gb8ehja814vpgeclup51tl5dskhgj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaxUdMm5Uhrox-G2KdXAAHbSHMSNPZXbs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
